@@ -28,9 +28,54 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         // statements go after the declations
         while (years <= 10) {
 
+
         }
     }
-//Asks the player how many acres of land to buy, and returns that number. You must have enough grain to pay for your purchase.
+    public  void yearlySummary(int year, int acresOfLand, int people, int valueLand, int numberOfBushels, int peopleStraved, int peopleMoved, int harvest, int bushelAcre, int destroyedBushel, int deathByPlague){
+        System.out.println("O GREAT HAMMURABI" );
+        System.out.println("You're in year" + year +" of the ten year rule");
+        System.out.println("In the previous year " + peopleStraved +" people starved to death");
+        System.out.println("In the previous year"  + peopleMoved + "people entered to kingdom");
+
+        if (deathByPlague != 0){
+            System.out.println("The population is now" + people + ".");
+            System.out.println("We harvested " + harvest + " bushel at " + bushelAcre + "per acre");
+            System.out.println("Rats destroyed " + destroyedBushel +" bushels, leaving " + numberOfBushels+ " bushels in storage");
+            System.out.println("the city owns " + acresOfLand+ "acrres of land");
+            System.out.println("Land is currently worth " + valueLand + "bushel per acre");
+        }
+    }
+    private void finished(int years, int totalDeaths, int population, int acres, int percentDied) {
+         String statement = " DUE TO THIS EXTREME MISMANAGEMENT YOU HAVE NOT ONLY BEEN IMPEACHED AND THROWN OUT OF OFFICE BY THE PEOPLE";
+        if (years < 10) {
+            System.out.println(statement);
+        } else {
+            String answer = "IN YOUR 10-YEAR TERM OF OFFICE, " + percentDied + " PERCENT OF THE\n" +
+                    "POPULATION STARVED PER YEAR ON AVERAGE, I.E., A TOTAL OF\n" +
+                    totalDeaths + " PEOPLE DIED!!\n" +
+                    "YOU STARTED WITH 10 ACRES PER PERSON AND ENDED WITH\n" +
+                    acres / population + " ACRES PER PERSON\n\n";
+            if (percentDied > 33 || acres / population < 7)
+                answer += statement;
+            else if (percentDied > 10 || acres / population < 9)
+                answer += "YOUR HEAVY-HANDED PERFORMANCE SMACKS OF NERO AND IVAN IV.\n" +
+                        "THE PEOPLE (REMAINING) FIND YOU AN UNPLEASANT RULER, AND,\n" +
+                        "FRANKLY, HATE YOUR GUTS!";
+            else if (percentDied > 3 || acres / population < 10)
+                answer += "YOUR PERFORMANCE COULD HAVE BEEN SOMEWHAT BETTER, BUT\n" +
+                        "REALLY WASN'T TOO BAD AT ALL.\n" +
+                        Math.random() * population * .8 + " PEOPLE WOULD" +
+                        "DEARLY LIKE TO SEE YOU ASSASSINATED BUT WE ALL HAVE OUR" +
+                        "TRIVIAL PROBLEMS";
+            else
+                answer += "A FANTASTIC PERFORMANCE!!!  CHARLEMANGE, DISRAELI, AND\n" +
+                        "JEFFERSON COMBINED COULD NOT HAVE DONE BETTER!";
+            answer += "\n\n\n\n\n\n\n\n\n\nSo long for now.";
+            System.out.println(answer);
+        }
+    }
+
+    //Asks the player how many acres of land to buy, and returns that number. You must have enough grain to pay for your purchase.
     public int askHowManyAcresToBuy(int price, int bushels) {
         int acresBuy = 0;
         while (true) {
@@ -138,7 +183,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     public int immigrants(int population, int acresOwned, int grainInStorage){
         return (20 * acresOwned + grainInStorage) / (100 * population) + 1;
     }
-    public int harvest(int acres, int bushelsUsedAsSeed){
+    public int harvest(int acres){
         return acres *(rand.nextInt(6) + 1);
     }
     public int grainEatenByRats(int bushels){
@@ -150,6 +195,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     public int newCostOfLand(){
         return rand.nextInt(23-17+1) + 17;
     }
+
 
 }
 

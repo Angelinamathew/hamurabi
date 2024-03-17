@@ -1,11 +1,12 @@
-package hammurabi;
+package hammurabi.docs.matuszek;
 
 import static org.junit.Assert.*;
 
+import hammurabi.Hammurabi;
 import org.junit.Before;
 import org.junit.Test;
 
-public class HammurabiTest {
+public class HammurabiTest1 {
     
     Hammurabi ham;
     
