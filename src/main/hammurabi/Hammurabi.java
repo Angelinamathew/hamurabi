@@ -105,7 +105,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
                 } else if (acresToPlant/10 > population) {
                     System.out.println("Not enough people!");
                 } else if (acresToPlant*2 > bushels) {
-                    System.out.println("Too many acres and not enough bushels");
+                    System.out.println("Too many acres and not enough bushels.O Great Hammurabi, surely you jest! We have only "+bushels+" bushels left!");
                 }
             }
             catch (Exception e){
@@ -115,6 +115,42 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         }
         return acresToPlant;
     }
+    //Each year, there is a 15% chance of a horrible plague. When this happens, half your people die.
+    // Return the number of plague deaths (possibly zero).
+    public int plagueDeaths(int population){
+        if(rand.nextInt(100) < 15){
+            return population/2;
+        }
+        return 0;
+    }
+    //Each person needs 20 bushels of grain to survive. If you feed them more than this, they are happy, but the grain is still gone.
+    public int starvationDeaths(int population, int bushelsFedToPeople){
+        if (bushelsFedToPeople < population){
+            return population - (bushelsFedToPeople / 20);
+        }
+        return 0;
+    }
+   // Return true if more than 45% of the people starve
+    public boolean uprising(int population, int howManyPeopleStarved){
+        int checkPercent = (int)((double) howManyPeopleStarved / population) +1;
+        return checkPercent >= 45;
+    }
+    public int immigrants(int population, int acresOwned, int grainInStorage){
+        return (20 * acresOwned + grainInStorage) / (100 * population) + 1;
+    }
+    public int harvest(int acres, int bushelsUsedAsSeed){
+        return acres *(rand.nextInt(6) + 1);
+    }
+    public int grainEatenByRats(int bushels){
+        if (rand.nextInt(100) < 40){
+            return rand.nextInt(30-10+1) + 10;
+        }
+        return 0;
+    }
+    public int newCostOfLand(){
+        return rand.nextInt(23-17+1) + 17;
+    }
+
 }
 
 
