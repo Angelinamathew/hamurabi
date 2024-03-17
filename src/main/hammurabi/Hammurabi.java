@@ -30,7 +30,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
 
         }
     }
-
+//Asks the player how many acres of land to buy, and returns that number. You must have enough grain to pay for your purchase.
     public int askHowManyAcresToBuy(int price, int bushels) {
         int acresBuy = 0;
         while (true) {
@@ -48,7 +48,8 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         }
         return acresBuy;
     }
-
+  //  Asks the player how many acres of land to sell, and returns that number. You can't sell more than you have.
+  //  Do not ask this question if the player is buying land; it doesn't make sense to do both in one turn.
     public int askHowManyAcresToSell(int acresOwned) {
         int arcesToSell = 0;
         while (true) {
@@ -65,6 +66,54 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             }
         }
         return arcesToSell;
+    }
+   // Ask the player how much grain to feed people, and returns that number.
+   // You can't feed them more grain than you have. You can feed them more than they need to survive.
+    public int askHowMuchGrainToFeedPeople(int bushels){
+        int grainToFeed = 0;
+        while (true) {
+            try {
+                System.out.println("How many acres of land to sell?");
+                grainToFeed = scanner.nextInt();
+                if (grainToFeed <= bushels) {
+                    break;
+                }
+                System.out.println("you don't have land to buy");
+            } catch (Exception e) {
+                System.out.println("This is not a number");
+                scanner.nextLine();
+            }
+        }
+        return grainToFeed;
+    }
+    /*
+    Ask the player how many acres to plant with grain, and returns that number.
+    You must have enough acres, enough grain, and enough people to do the planting.
+    Any grain left over goes into storage for next year.
+     */
+    public int askHowManyAcresToPlant(int acresOwned, int population, int bushels){
+        int acresToPlant =0;
+        while(true){
+            try {
+                System.out.println("How many acres to plant with grain?");
+                acresToPlant = scanner.nextInt();
+
+                if (acresToPlant<=acresOwned && acresOwned/10 <= population && acresToPlant <= bushels){
+                    break;
+                } else if (acresToPlant > acresOwned) {
+                    System.out.println("Too many acres to plant");
+                } else if (acresToPlant/10 > population) {
+                    System.out.println("Not enough people!");
+                } else if (acresToPlant*2 > bushels) {
+                    System.out.println("Too many acres and not enough bushels");
+                }
+            }
+            catch (Exception e){
+                System.out.println("This is not a number");
+                scanner.nextInt();
+            }
+        }
+        return acresToPlant;
     }
 }
 
